@@ -1,5 +1,7 @@
 package serial;
 
+import java.util.concurrent.atomic.AtomicLong;
+
 /**
  * Twitter_Snowflake<br>
  * SnowFlake的结构如下(每部分用-分开):<br>
@@ -80,6 +82,8 @@ public class SnowflakeIdWorker {
      */
     private long sequence = 0L;
 
+    private AtomicLong atmoicSequence = new AtomicLong(0L);
+
     /**
      * 上次生成ID的时间截
      */
@@ -111,18 +115,18 @@ public class SnowflakeIdWorker {
      *
      * @return SnowflakeId
      */
-    public synchronized long nextId() {
+    public long nextId() {
         long timestamp = timeGen();
 
 //        如果当前时间小于上一次ID生成的时间戳，说明系统时钟回退过这个时候应当抛出异常
-        if (timestamp < lastTimestamp) {
-            throw new RuntimeException(
-                    String.format("Clock moved backwards.  Refusing to generate id for %d milliseconds", lastTimestamp - timestamp));
-        }
+//        if (timestamp < lastTimestamp) {
+//            throw new RuntimeException(
+//                    String.format("Clock moved backwards.  Refusing to generate id for %d milliseconds", lastTimestamp - timestamp));
+//        }
 
         //如果是同一时间生成的，则进行毫秒内序列
         if (lastTimestamp == timestamp) {
-            sequence = (sequence + 1) & sequenceMask;
+            atmoicSequence.incrementAndGet();
             //毫秒内序列溢出
             if (sequence == 0) {
                 //阻塞到下一个毫秒,获得新的时间戳

@@ -4,6 +4,8 @@ import serial.SnowflakeIdWorker;
 
 import java.util.Map;
 import java.util.concurrent.*;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * 性能测试类
@@ -13,6 +15,7 @@ public class MultiThreadPerform {
     ExecutorService executorService;
     int threadCounts;
     CountDownLatch latch;
+
 
 
     //构造函数
@@ -78,7 +81,7 @@ class GenerateSerail implements Runnable {
 
 class test{
     public static void main(String[] args) {
-        int threadCount = 100;
+        int threadCount = 10;
         CountDownLatch latch = new CountDownLatch(threadCount);
 //        SnowflakeIdWorker snowflakeIdWorker = new SnowflakeIdWorker(0, 0);
         Map<Long, Integer> serialMap = new ConcurrentHashMap<Long, Integer>();
