@@ -1,5 +1,8 @@
 package concurrent;
 
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 /*volatile 变量 自 增 运算 测试 * *@author zzm */
 public class VolatileTest {
     public static volatile int race = 0;
@@ -25,6 +28,10 @@ public class VolatileTest {
         } //等待 所有 累加 线程 都 结束
         while (Thread.activeCount() > 1) Thread.yield();
         System.out.println(race);
+        Map<String, String > map = new ConcurrentHashMap<String, String>();
+        map.size();
+        map.put("abc", "abc");
     }
+
 }
 
