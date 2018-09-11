@@ -18,6 +18,4 @@ public class ResponseListener implements UpdateListener {
 
     private static final Logger log = LoggerFactory.getLogger(ResponseListener.class);
 
-
-
 }
