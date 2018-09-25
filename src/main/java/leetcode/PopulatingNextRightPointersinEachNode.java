@@ -36,7 +36,40 @@ package leetcode;
  */
 public class PopulatingNextRightPointersinEachNode {
     public void connect(TreeLinkNode root) {
+        doConnect(root);
+    }
+    public void doConnect(TreeLinkNode root) {
+        if(null == root){
+            return;
+        }
+        if(null != root.left && null != root.right){
+            root.left.next = root.right;
+            if(null != root.next){
+                root.right.next = root.next.left;
+            }
+        }else{
+            return;
+        }
+        doConnect(root.left);
+        doConnect(root.right);
+    }
+
+
+
+    public static void main(String[] args){
+        TreeLinkNode root = new TreeLinkNode(0);
+        root.left = new TreeLinkNode(1);
+        root.right = new TreeLinkNode(2);
+        root.left.left = new TreeLinkNode(3);
+        root.left.right = new TreeLinkNode(4);
+        root.right.left= new TreeLinkNode(5);
+        root.right.right = new TreeLinkNode(6);
+
+        PopulatingNextRightPointersinEachNode test = new PopulatingNextRightPointersinEachNode();
+        test.doConnect(root);;
+        System.out.println(root);
 
     }
+
 
 }
