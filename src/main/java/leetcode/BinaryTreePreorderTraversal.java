@@ -1,7 +1,9 @@
 package leetcode;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.TreeMap;
 
 public class BinaryTreePreorderTraversal {
     public List<Integer> preorderTraversal(TreeNode root) {
@@ -53,5 +55,7 @@ public class BinaryTreePreorderTraversal {
 //        test.preorderTraversal(root);
         test.levelOrder(root, result, 0);
         System.out.println(result);
+        TreeMap treeMap = new TreeMap();
+        HashMap hashMap = new HashMap();
     }
 }
