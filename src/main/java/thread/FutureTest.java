@@ -1,7 +1,9 @@
 package thread;
 
 
+import java.util.HashMap;
 import java.util.Random;
+import java.util.UUID;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CompletionService;
 import java.util.concurrent.ExecutorCompletionService;
@@ -12,6 +14,7 @@ import java.util.concurrent.Future;
 public class FutureTest {
 
     public static void main(String[] args) throws Exception {
+        UUID uid = UUID.randomUUID();
         testSingleFutureAndCallable();
         testMultFutureAndCallable();
     }

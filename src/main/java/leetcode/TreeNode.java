@@ -24,12 +24,12 @@ public class TreeNode {
             return;
         }
         if((2 * index + 1) < arr.length ){
-            root.left =  0 == arr[2 * index + 1] ? null : new TreeNode(arr[2 * index + 1]);
+            root.left =  -1 == arr[2 * index + 1] ? null : new TreeNode(arr[2 * index + 1]);
         }else {
             root.left = null;
         }
         if((2 * index + 2) < arr.length ){
-            root.right =  0 == arr[2 * index + 2] ? null : new TreeNode(arr[2 * index + 2]);
+            root.right =  -1 == arr[2 * index + 2] ? null : new TreeNode(arr[2 * index + 2]);
         }else {
             root.right = null;
         }

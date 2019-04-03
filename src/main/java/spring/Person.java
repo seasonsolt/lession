@@ -7,6 +7,9 @@ import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author qsk
  */
@@ -29,7 +32,7 @@ public class Person implements BeanFactoryAware, BeanNameAware,
     }
 
     public void setName(String name) {
-        System.out.println("【注入属性】注入属性name");
+        System.out.println("【注入属性】注入属性name" + name);
         this.name = name;
     }
 
@@ -38,7 +41,7 @@ public class Person implements BeanFactoryAware, BeanNameAware,
     }
 
     public void setAddress(String address) {
-        System.out.println("【注入属性】注入属性address");
+        System.out.println("【注入属性】注入属性address" + address);
         this.address = address;
     }
 
@@ -47,7 +50,7 @@ public class Person implements BeanFactoryAware, BeanNameAware,
     }
 
     public void setPhone(int phone) {
-        System.out.println("【注入属性】注入属性phone");
+        System.out.println("【注入属性】注入属性phone" + phone);
         this.phone = phone;
     }
 
@@ -68,7 +71,7 @@ public class Person implements BeanFactoryAware, BeanNameAware,
     // 这是BeanNameAware接口方法
     @Override
     public void setBeanName(String arg0) {
-        System.out.println("【BeanNameAware接口】调用BeanNameAware.setBeanName()");
+        System.out.println("【BeanNameAware接口】调用BeanNameAware.setBeanName() " + arg0);
         this.beanName = arg0;
     }
 
@@ -93,5 +96,22 @@ public class Person implements BeanFactoryAware, BeanNameAware,
     // 通过<bean>的destroy-method属性指定的初始化方法
     public void myDestory() {
         System.out.println("【destroy-method】调用<bean>的destroy-method属性指定的初始化方法");
+    }
+
+    public static void main(String [] args){
+
+        List<Person> list = new ArrayList<Person>();
+        Person p1 = new Person();
+        p1.setName("zhangshan");
+        System.out.println(p1);
+        list.add(p1);
+
+        for(Person p: list){
+            p.setName("wangs");
+        }
+
+        System.out.println(p1);
+
+
     }
 }

@@ -59,9 +59,9 @@ public class PathSum {
 
         int arr[] = {5, 4, 8, 11, 0, 13, 4, 7, 2, 0, 0, 0, 0, 0, 1};
         int arr1[] = {1,-2,-3,1,3,-2,0,-1};
-        TreeNode node = root.levelArrToTree(arr1);
+//        TreeNode node = root.levelArrToTree(arr1);
 
-        System.out.print(test.hasPathSum(node, 22));
+//        System.out.print(test.hasPathSum(node, 22));
 
 
     }

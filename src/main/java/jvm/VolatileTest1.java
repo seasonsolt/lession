@@ -1,5 +1,7 @@
 package jvm;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class VolatileTest1 {
     private static volatile int MY_INT = 0;
 
@@ -14,7 +16,7 @@ public class VolatileTest1 {
             int local_value = MY_INT;
             while ( local_value < 5){
                 if( local_value!= MY_INT){
-                    System.out.println("Got Change for MY_INT : " + MY_INT);
+                    System.out.println("Got Change for MY_INT : " + MY_INT + " while local_value=" + local_value);
                     local_value= MY_INT;
                 }
             }
@@ -27,8 +29,8 @@ public class VolatileTest1 {
 
             int local_value = MY_INT;
             while (MY_INT <5){
-                System.out.println("Incrementing MY_INT to: " + local_value+1);
-                MY_INT = ++local_value;
+                System.out.println("Incrementing MY_INT to: " + ++local_value);
+                MY_INT = local_value;
                 try {
                     Thread.sleep(500);
                 } catch (InterruptedException e) { e.printStackTrace(); }

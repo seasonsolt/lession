@@ -9,7 +9,9 @@ public class BeanLifeCycle {
 
         System.out.println("现在开始初始化容器");
 
+        System.out.println("\n\n");
         ApplicationContext factory = new ClassPathXmlApplicationContext("config/beans.xml");
+        System.out.println("\n\n");
         System.out.println("容器初始化成功");
         //得到Preson，并使用
         Person person = factory.getBean("person", Person.class);

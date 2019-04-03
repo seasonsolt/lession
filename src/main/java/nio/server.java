@@ -7,7 +7,9 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
+import java.nio.channels.spi.SelectorProvider;
 import java.util.Iterator;
+import java.util.ServiceConfigurationError;
 import java.util.Set;
 
 /**
@@ -38,6 +40,19 @@ public class server {
         // Infinite loop..
         // Keep server running
         while (true) {
+
+            String cn = System.getProperty("java.nio.channels.spi.SelectorProvider");
+            if (cn == null)
+                break;
+            try {
+                Class<?> c = Class.forName(cn, true,
+                        ClassLoader.getSystemClassLoader());
+                SelectorProvider provider = (SelectorProvider)c.newInstance();
+            } catch (ClassNotFoundException x) {
+            } catch (IllegalAccessException x) {
+            } catch (InstantiationException x) {
+            } catch (SecurityException x) {
+            }
 
             log("i'm a server and i'm waiting for new connection and buffer select...");
             // Selects a set of keys whose corresponding channels are ready for I/O operations
